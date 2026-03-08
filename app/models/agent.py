@@ -55,12 +55,15 @@ class Agent(Base):
     creator: Mapped["User"] = relationship(  # type: ignore[name-defined]
         "User", foreign_keys=[created_by]
     )
+    # members: Mapped[list["AgentMember"]] = relationship(
+    #     "AgentMember", back_populates="agent", cascade="all, delete-orphan"
+    # )
     members: Mapped[list["AgentMember"]] = relationship(
-        "AgentMember", back_populates="agent", cascade="all, delete-orphan"
+        "AgentMember", cascade="all, delete-orphan"
     )
-    approval_requests: Mapped[list["ApprovalRequest"]] = relationship(  # type: ignore[name-defined]
-        "ApprovalRequest", back_populates="agent"
-    )
+    # approval_requests: Mapped[list["ApprovalRequest"]] = relationship(  # type: ignore[name-defined]
+    #     "ApprovalRequest", back_populates="agent"
+    # )
 
 
 class AgentMember(Base):
@@ -93,7 +96,7 @@ class AgentMember(Base):
     )
 
     # ── 관계 매핑 ──────────────────────────────────────────────────────────
-    agent: Mapped["Agent"] = relationship("Agent", back_populates="members")
+    # agent: Mapped["Agent"] = relationship("Agent", back_populates="members")
     user: Mapped["User"] = relationship("User")  # type: ignore[name-defined]
     role: Mapped["CommonCode"] = relationship(  # type: ignore[name-defined]
         "CommonCode", foreign_keys=[role_code]
