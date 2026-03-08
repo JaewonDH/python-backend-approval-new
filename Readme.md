@@ -5,7 +5,7 @@
 py -m venv venv
 .\venv\Scripts\activate
 pip install -r requirements.txt
-uvicorn app.main:app --reload
+uvicorn app.main:app --reload or uvicorn app.main:app --reload --port 8001
 ```
 
 ## 테스트 코드 실행
